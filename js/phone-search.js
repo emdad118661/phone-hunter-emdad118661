@@ -15,7 +15,7 @@ const searchPhone = () => {
         // console.log(data);
         const searchResult = document.getElementById('search-result');
         data.forEach(phone => {
-            console.log(phone);
+            // console.log(phone);
             const div = document.createElement('div');
             div.classList.add('col');
             div.innerHTML = `
@@ -24,8 +24,7 @@ const searchPhone = () => {
                 <div class="card-body">
                     <h5 class="card-title">Brand: ${phone.brand}<br>
                     Phone Name: ${phone.phone_name}</h5>
-                    <p class="card-text">${phone.slug}</p>
-                    <button type="button" class="btn btn-primary">Details</button>
+                    <button onclick="loadPhoneDetail('${phone.slug}')" type="button" class="btn btn-primary">Details</button>
                 </div>
             </div>
             `;
@@ -34,3 +33,14 @@ const searchPhone = () => {
     }
 }
 
+const loadPhoneDetail = id => {
+    console.log(id);
+    const url = `https://openapi.programming-hero.com/api/phone/${id}`;
+    fetch(url)
+        .then(res => res.json())
+        .then(data => console.log(data.data))
+}
+
+const displayPhoneDetail = () => {
+
+}
