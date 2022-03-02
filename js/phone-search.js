@@ -58,6 +58,7 @@ const loadPhoneDetail = id => {
 const displayPhoneDetail = phone => {
     console.log(phone);
     const phoneDetails = document.getElementById('phone-details');
+    phoneDetails.textContent = '';
     const div = document.createElement('div');
     div.classList.add('card');
     div.innerHTML = `
