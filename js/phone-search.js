@@ -65,7 +65,7 @@ const displayPhoneDetail = phone => {
             <div class="card-body">
                 <h5 class="card-title">Brand: ${phone.brand}<br>
                 Phone Name: ${phone.name}<br>
-                Release Date: ${phone.releaseDate}</h5>
+                Release Date: ${phone.releaseDate ? phone.releaseDate : 'Not Found'}</h5>
                 <p class="card-text"><b>Fetures: </b><br>Storage: ${phone.mainFeatures.storage}<br>
                 Display: ${phone.mainFeatures.displaySize}<br>
                 Memory: ${phone.mainFeatures.memory}<br>
