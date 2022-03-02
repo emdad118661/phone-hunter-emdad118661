@@ -1,9 +1,10 @@
 const searchPhone = () => {
     const searchField = document.getElementById('search-field');
     const searchText = searchField.value;
-    // console.log(searchText);
+    // clear data
     searchField.value = '';
 
+    // load data 
     const url = `https://openapi.programming-hero.com/api/phones?search=${searchText}`;
     fetch(url)
         .then(res => res.json())
@@ -14,6 +15,19 @@ const searchPhone = () => {
     const displaySearchResult = data => {
         // console.log(data);
         const searchResult = document.getElementById('search-result');
+        searchResult.textContent = '';
+        if (data.length == 0) {
+            const div = document.createElement('div');
+            div.classList.add('col');
+            div.innerHTML = `
+            <div class="card">
+                <div class="card-body text-danger">
+                        <b>Sorry, No Phone Found, TRY AGAIN!!!</b>
+                </div>
+            </div>
+            `;
+            searchResult.appendChild(div);
+        }
         data.forEach(phone => {
             // console.log(phone);
             const div = document.createElement('div');
@@ -56,7 +70,7 @@ const displayPhoneDetail = phone => {
                 Display: ${phone.mainFeatures.displaySize}<br>
                 Memory: ${phone.mainFeatures.memory}<br>
                 Chip-set: ${phone.mainFeatures.chipSet}<br>
-                Sensors: ${phone.mainFeatures.sensors}<br>
+                <b>Sensors:</b><br> ${phone.mainFeatures.sensors}<br>
                 <b>Others:</b><br> 
                 WLAN: ${phone.others.WLAN}<br>
                 Bluetooth: ${phone.others.Bluetooth}<br>
